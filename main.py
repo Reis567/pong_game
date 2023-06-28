@@ -34,7 +34,43 @@ bola.color("white")
 bola.penup()
 bola.goto(0,0)
 
+# Funções
 
+# Raquete A
+def raquete_a_up():
+    y = raquete_a.ycor()
+    y+=20
+    raquete_a.sety(y)
+
+def raquete_a_down():
+    y = raquete_a.ycor()
+    y-=20
+    raquete_a.sety(y)
+
+
+# Raquete B
+def raquete_b_up():
+    y = raquete_b.ycor()
+    y+=20
+    raquete_b.sety(y)
+
+def raquete_b_down():
+    y = raquete_b.ycor()
+    y-=20
+    raquete_b.sety(y)
+
+# Teclas vinculadas a movimento
+
+wn.listen()
+
+#Raquete A
+wn.onkeypress(raquete_a_up,"w")
+wn.onkeypress(raquete_a_down,"s")
+
+# Raquete B
+
+wn.onkeypress(raquete_b_up,"Up")
+wn.onkeypress(raquete_b_down,"Down")
 
 while True:
     wn.update()
