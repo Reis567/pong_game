@@ -6,6 +6,11 @@ wn.bgcolor("black")
 wn.setup(width=800,height=600)
 wn.tracer(0)
 
+# Pontuação variaveis
+
+score_a = 0
+score_b = 0
+
 # Raquete 1
 raquete_a = turtle.Turtle()
 raquete_a.speed(0)
@@ -37,6 +42,15 @@ bola.goto(0,0)
 bola.dx = 0.4
 bola.dy = -0.4
 
+# Score
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write(f"Jogador 1 : {score_a}   Jogador 2 : {score_b} ", align="center" , font=("Courier", 24, "normal"))
 
 # Funções
 
@@ -95,10 +109,16 @@ while True:
     if bola.xcor() > 390:
         bola.goto(0,0)
         bola.dx *= -1
+        score_a +=1
+        pen.clear()
+        pen.write(f"Jogador 1 : {score_a}   Jogador 2 : {score_b} ", align="center" , font=("Courier", 24, "normal"))
     
     if bola.xcor() < -390:
         bola.goto(0,0)
         bola.dx *= -1
+        score_b +=1
+        pen.clear()
+        pen.write(f"Jogador 1 : {score_a}   Jogador 2 : {score_b} ", align="center" , font=("Courier", 24, "normal"))
 
 
     # Colisão com Raquetes
