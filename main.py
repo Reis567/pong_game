@@ -34,6 +34,10 @@ bola.color("white")
 bola.penup()
 bola.goto(0,0)
 
+bola.dx = 0.4
+bola.dy = -0.4
+
+
 # Funções
 
 # Raquete A
@@ -74,3 +78,24 @@ wn.onkeypress(raquete_b_down,"Down")
 
 while True:
     wn.update()
+
+    # Movimentação da bola
+    bola.setx(bola.xcor() + bola.dx)
+    bola.sety(bola.ycor() + bola.dy)
+
+    #Colisão com borda 
+    if bola.ycor() > 290:
+        bola.sety(290)
+        bola.dy*= -1
+    
+    if bola.ycor() < -290:
+        bola.sety(-290)
+        bola.dy*= -1
+
+    if bola.xcor() > 390:
+        bola.goto(0,0)
+        bola.dx *= -1
+    
+    if bola.xcor() < -390:
+        bola.goto(0,0)
+        bola.dx *= -1
