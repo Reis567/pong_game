@@ -4,7 +4,7 @@ import random
 # Configuração da tela
 wn = turtle.Screen()
 wn.title("Pong by Reis567")
-wn.bgcolor("black")
+wn.bgcolor("teal")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
@@ -12,11 +12,18 @@ wn.tracer(0)
 score_a = 0
 score_b = 0
 
+
+# Cor das raquetes
+
+cores_raquetes = ["blue","cyan","magenta" ,"brown" ,"navy" ,"salmon","violet","black" ,"blue","purple" ,"gray"]
+raquete_a_cor = random.choice(cores_raquetes)
+raquete_b_cor = random.choice(cores_raquetes)
+
 # Raquete 1
 raquete_a = turtle.Turtle()
 raquete_a.speed(0)
 raquete_a.shape("square")
-raquete_a.color("white")
+raquete_a.color(f"{raquete_a_cor}")
 raquete_a.shapesize(stretch_wid=5, stretch_len=1)
 raquete_a.penup()
 raquete_a.goto(-350, 0)
@@ -25,7 +32,7 @@ raquete_a.goto(-350, 0)
 raquete_b = turtle.Turtle()
 raquete_b.speed(0)
 raquete_b.shape("square")
-raquete_b.color("white")
+raquete_b.color(f"{raquete_b_cor}")
 raquete_b.shapesize(stretch_wid=5, stretch_len=1)
 raquete_b.penup()
 raquete_b.goto(350, 0)
@@ -37,8 +44,17 @@ bola.shape("square")
 bola.color("white")
 bola.penup()
 bola.goto(0, 0)
-bola.dx = 0.2
-bola.dy = -0.2
+bola.dx = 0.3
+bola.dy = 0.3
+
+# Função para atualizar a posição inicial da bola
+def update_ball_position():
+    x = 0  # Coordenada x para o meio da tela
+    y = random.randint(-100, 100)  # Coordenada y dentro do intervalo desejado
+    bola.goto(x, y)
+
+# Definindo a posição inicial aleatória da bola
+
 
 # Pontuação
 pen = turtle.Turtle()
@@ -152,6 +168,8 @@ while True:
             score_a += 1
             pen.clear()
             pen.write("Jogador 1: {}   Jogador 2: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
+            # Atualiza a posição inicial da bola após o gol
+            update_ball_position()
 
         if bola.xcor() < -390:
             bola.goto(0, 0)
@@ -159,6 +177,8 @@ while True:
             score_b += 1
             pen.clear()
             pen.write("Jogador 1: {}   Jogador 2: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
+            # Atualiza a posição inicial da bola após o gol
+            update_ball_position()
 
         # Verificação de colisão com as raquetes
         if (bola.xcor() > 340 and bola.xcor() < 350) and (bola.ycor() < raquete_b.ycor() + 50 and bola.ycor() > raquete_b.ycor() - 50):
